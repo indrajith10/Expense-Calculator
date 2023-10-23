@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ExpenseCalculator {
+    public static void main(String[] args) {
+        ArrayList<Double> expenses = new ArrayList<>();
+        double totalExpenses = 0.0;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Expense Calculator");
+            System.out.println("1. Add Daily Expense");
+            System.out.println("2. Calculate Total Expenses");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter daily expense: ");
+                    double expense = scanner.nextDouble();
+                    expenses.add(expense);
+                    System.out.println("Expense added successfully.");
+                    break;
+                case 2:
+                    totalExpenses = calculateTotalExpenses(expenses);
+                    System.out.println("Total Expenses: " + totalExpenses + " Rupees");
+                    break;
+                case 3:
+                    System.out.println("Exiting Expense Calculator. Thank you!");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static double calculateTotalExpenses(ArrayList<Double> expenses) {
+        double total = 0.0;
+        for (double expense : expenses) {
+            total += expense;
+        }
+        return total;
+    }
+}
